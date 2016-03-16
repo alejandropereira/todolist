@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import * as todoActions from "../actions/todo_actions"
 
 export default class NewTodo extends Component {
   constructor() {
@@ -8,9 +9,11 @@ export default class NewTodo extends Component {
 
   onEnter(e) {
     const ENTER = 13;
+    let inputVal = e.target.value;
 
     if(e.keyCode == ENTER) {
-      console.log("Key press ENTER");
+      todoActions.createTodo(inputVal);
+      e.target.value = "";
     }
   }
 

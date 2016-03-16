@@ -1,4 +1,5 @@
 import EventEmitter from "events";
+import dispatcher from "../dispatcher"
 
 class TodoStore extends EventEmitter {
   constructor() {
@@ -33,6 +34,15 @@ class TodoStore extends EventEmitter {
 
 const todoStore = new TodoStore;
 
-window.todoStore = todoStore;
+dispatcher.register(function(action){
+  let { type, text } = action;
+
+  switch(type) {
+    case "CREATE_TODO":
+      todoStore.createTodo(text);
+      todoStore.emit("change");
+      break;
+  }
+});
 
 export default todoStore;
