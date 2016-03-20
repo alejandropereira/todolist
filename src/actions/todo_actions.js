@@ -6,3 +6,11 @@ export function createTodo(text) {
     text
   })
 }
+
+export function editTodo(id, text) {
+  dispatcher.dispatch({
+    type: "EDIT_TODO",
+    id,
+    text
+  })
+}
